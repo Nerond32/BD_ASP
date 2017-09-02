@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD_Proj"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Wafel Challenge" Height="450" Width="525">
     <Grid>
-        
+        <UserControl>
+            
+        </UserControl>
     </Grid>
 </Window>

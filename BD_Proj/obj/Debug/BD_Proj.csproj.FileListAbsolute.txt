@@ -13,3 +13,7 @@ D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.csproj.GenerateReso
 D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.csproj.CoreCompileInputs.cache
 D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.exe
 D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.pdb
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\MenuUC.g.cs
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\QuizUC.g.cs
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\MenuUC.baml
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\QuizUC.baml
