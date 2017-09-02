@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FakeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WELFLEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COMMENTS">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="int" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="memeId" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="datetime" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="MEMES">
           <Key>
             <PropertyRef Name="memId" />
@@ -16,15 +26,93 @@
           <Property Name="userId" Type="int" Nullable="false" />
           <Property Name="creatDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="FakeModelStoreContainer">
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="COMMENTS_fk0">
+          <End Role="MEMES" Type="Self.MEMES" Multiplicity="1" />
+          <End Role="COMMENTS" Type="Self.COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMES">
+              <PropertyRef Name="memId" />
+            </Principal>
+            <Dependent Role="COMMENTS">
+              <PropertyRef Name="memeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MEMES_fk0">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="MEMES" Type="Self.MEMES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="MEMES">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_fk0">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WELFLEModelStoreContainer">
+          <EntitySet Name="COMMENTS" EntityType="Self.COMMENTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMES" EntityType="Self.MEMES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="COMMENTS_fk0" Association="Self.COMMENTS_fk0">
+            <End Role="MEMES" EntitySet="MEMES" />
+            <End Role="COMMENTS" EntitySet="COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="MEMES_fk0" Association="Self.MEMES_fk0">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="MEMES" EntitySet="MEMES" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_fk0" Association="Self.USERS_fk0">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FakeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="MEMES">
+      <Schema Namespace="WELFLEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="memeId" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MEME" Relationship="Self.COMMENTS_fk0" FromRole="COMMENTS" ToRole="MEMES" />
+        </EntityType>
+        <EntityType Name="MEME">
           <Key>
             <PropertyRef Name="memId" />
           </Key>
@@ -34,18 +122,101 @@
           <Property Name="note" Type="Int32" Nullable="false" />
           <Property Name="userId" Type="Int32" Nullable="false" />
           <Property Name="creatDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="COMMENTS" Relationship="Self.COMMENTS_fk0" FromRole="MEMES" ToRole="COMMENTS" />
+          <NavigationProperty Name="USER" Relationship="Self.MEMES_fk0" FromRole="MEMES" ToRole="USERS" />
         </EntityType>
-        <EntityContainer Name="FakeEntity" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MEMES" EntityType="Self.MEMES" />
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.USERS_fk0" FromRole="ROLES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MEMES" Relationship="Self.MEMES_fk0" FromRole="USERS" ToRole="MEMES" />
+          <NavigationProperty Name="ROLE" Relationship="Self.USERS_fk0" FromRole="USERS" ToRole="ROLES" />
+        </EntityType>
+        <Association Name="COMMENTS_fk0">
+          <End Role="MEMES" Type="Self.MEME" Multiplicity="1" />
+          <End Role="COMMENTS" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMES">
+              <PropertyRef Name="memId" />
+            </Principal>
+            <Dependent Role="COMMENTS">
+              <PropertyRef Name="memeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MEMES_fk0">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="MEMES" Type="Self.MEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="MEMES">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_fk0">
+          <End Role="ROLES" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WELFLEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COMMENTS" EntityType="Self.COMMENT" />
+          <EntitySet Name="MEMES" EntityType="Self.MEME" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLE" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="COMMENTS_fk0" Association="Self.COMMENTS_fk0">
+            <End Role="MEMES" EntitySet="MEMES" />
+            <End Role="COMMENTS" EntitySet="COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="MEMES_fk0" Association="Self.MEMES_fk0">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="MEMES" EntitySet="MEMES" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_fk0" Association="Self.USERS_fk0">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FakeModelStoreContainer" CdmEntityContainer="FakeEntity">
+        <EntityContainerMapping StorageEntityContainer="WELFLEModelStoreContainer" CdmEntityContainer="WELFLEEntities">
+          <EntitySetMapping Name="COMMENTS">
+            <EntityTypeMapping TypeName="WELFLEModel.COMMENT">
+              <MappingFragment StoreEntitySet="COMMENTS">
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="memeId" ColumnName="memeId" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MEMES">
-            <EntityTypeMapping TypeName="FakeModel.MEMES">
+            <EntityTypeMapping TypeName="WELFLEModel.MEME">
               <MappingFragment StoreEntitySet="MEMES">
                 <ScalarProperty Name="memId" ColumnName="memId" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -53,6 +224,24 @@
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="creatDate" ColumnName="creatDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES">
+            <EntityTypeMapping TypeName="WELFLEModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLES">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="WELFLEModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -70,7 +259,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

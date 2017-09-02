@@ -13,10 +13,10 @@ namespace FakeWeb
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FakeEntity : DbContext
+    public partial class WELFLEEntities : DbContext
     {
-        public FakeEntity()
-            : base("name=FakeEntity")
+        public WELFLEEntities()
+            : base("name=WELFLEEntities")
         {
         }
     
@@ -25,6 +25,9 @@ namespace FakeWeb
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<MEMES> MEMES { get; set; }
+        public DbSet<COMMENT> COMMENTS { get; set; }
+        public DbSet<MEME> MEMES { get; set; }
+        public DbSet<ROLE> ROLES { get; set; }
+        public DbSet<USER> USERS { get; set; }
     }
 }

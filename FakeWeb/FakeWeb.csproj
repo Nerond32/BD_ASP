@@ -76,9 +76,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FakeModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="FakeModel.edmx.diagram">
+    <Content Include="FakeModel.edmx.diagram">
       <DependentUpon>FakeModel.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -101,6 +101,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FakeModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="FakeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FakeModel.edmx</DependentUpon>
+      <LastGenOutput>FakeModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +115,9 @@
     </Compile>
     <Compile Include="addFake.aspx.designer.cs">
       <DependentUpon>addFake.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="COMMENT.cs">
+      <DependentUpon>FakeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Fake.aspx.cs">
       <DependentUpon>Fake.aspx</DependentUpon>
@@ -123,12 +131,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FakeModel.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="FakeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FakeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FakeModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FakeModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MEME.cs">
+      <DependentUpon>FakeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ROLE.cs">
+      <DependentUpon>FakeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER.cs">
+      <DependentUpon>FakeModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
