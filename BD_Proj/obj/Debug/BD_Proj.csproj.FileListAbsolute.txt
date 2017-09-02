@@ -1,0 +1,15 @@
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\bin\Debug\BD_Proj.exe.config
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\bin\Debug\BD_Proj.exe
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\bin\Debug\BD_Proj.pdb
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.csprojResolveAssemblyReference.cache
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\MainWindow.g.cs
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\App.g.cs
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj_MarkupCompile.cache
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj_MarkupCompile.lref
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\MainWindow.baml
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.g.resources
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.Properties.Resources.resources
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.csproj.GenerateResource.Cache
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.csproj.CoreCompileInputs.cache
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.exe
+D:\workspace\Visual Studio\BD_Proj\BD_Proj\obj\Debug\BD_Proj.pdb
