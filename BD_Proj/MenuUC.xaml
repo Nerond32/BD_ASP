@@ -9,8 +9,8 @@
     <Grid>
         <Button x:Name="StartButton" Content="Zacznij quiz" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Width="76" Click="StartButton_Click" Height="34" RenderTransformOrigin="0.369,1.161"/>
         <Button x:Name="AdminPanelButton" Content="Panel Administratora" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="118" Click="AdminPanelButton_Click" Height="31" RenderTransformOrigin="0.451,-2.923"/>
-        <Button x:Name="RegisterButton" Content="Rejestracja" HorizontalAlignment="Left" Margin="40,150,0,0" VerticalAlignment="Top" Width="76" Click="ExitButton_Click" Height="34"/>
-        <Button x:Name="LoginButton" Content="Logowanie" HorizontalAlignment="Left" Margin="40,100,0,0" VerticalAlignment="Top" Width="76" Click="RegisterButton_Click" Height="34"/>
+        <Button x:Name="RegisterButton" Content="Rejestracja" HorizontalAlignment="Left" Margin="40,150,0,0" VerticalAlignment="Top" Width="76" Click="RegisterButton_Click" Height="34"/>
+        <Button x:Name="LoginButton" Content="Logowanie" HorizontalAlignment="Left" Margin="40,100,0,0" VerticalAlignment="Top" Width="76" Click="LoginButton_Click" Height="34"/>
         <Button x:Name="ExitButton" Content="Wyjście" HorizontalAlignment="Left" Margin="214,256,0,0" VerticalAlignment="Top" Width="76" Click="ExitButton_Click" Height="34" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>

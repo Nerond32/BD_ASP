@@ -74,8 +74,14 @@
     <Compile Include="MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuizEndedUC.xaml.cs">
+      <DependentUpon>QuizEndedUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuizUC.xaml.cs">
       <DependentUpon>QuizUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScoresUC.xaml.cs">
+      <DependentUpon>ScoresUC.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminPanel.xaml">
       <SubType>Designer</SubType>
@@ -97,7 +103,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QuizEndedUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuizUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScoresUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

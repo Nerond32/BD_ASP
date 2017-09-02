@@ -32,7 +32,7 @@ namespace BD_Proj
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ChangeModeDelegate();
+            MainWindow.ChangeModeDelegate(1);
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)

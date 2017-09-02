@@ -18,10 +18,9 @@ namespace BD_Proj
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public delegate void ChangeModeDelegate();
+    public delegate void ChangeModeDelegate(short mode);
     public partial class MainWindow : Window
     {
-        private bool isGameStarted = false;
         private static ChangeModeDelegate changeMode = ChangeMode;
         public static ChangeModeDelegate ChangeModeDelegate { get { return changeMode; } set { changeMode = value; } }
         private static MainWindow mw;
@@ -33,20 +32,30 @@ namespace BD_Proj
             mw = this;
         }
 
-        private static void ChangeMode()
+        private static void ChangeMode(short mode)
         {
             mw.mainSP.Children.RemoveAt(0);
-            if (mw.isGameStarted)
+            switch(mode)
             {
-                QuizUC quizUC = new QuizUC();
-                mw.mainSP.Children.Add(quizUC);
+                case 0:
+                {
+                    MenuUC menuUC = new MenuUC();
+                    mw.mainSP.Children.Add(menuUC);
+                    break;
+                }
+                case 1:
+                {   
+                    QuizUC quizUC = new QuizUC();
+                    mw.mainSP.Children.Add(quizUC);
+                    break;
+                }
+                case 2:
+                {
+                    QuizEndedUC quizEndedUC = new QuizEndedUC();
+                    mw.mainSP.Children.Add(quizEndedUC);
+                    break;
+                }
             }
-            else
-            {
-                MenuUC menuUC = new MenuUC();
-                mw.mainSP.Children.Add(menuUC);
-            }
-            mw.isGameStarted = !mw.isGameStarted;
         }
     }
 }

@@ -8,11 +8,11 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="0,0,-151,-28">
         <Label Content="Pytanie:" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Width="53"/>
-        <TextBox Height="161" Margin="50,40,21,0" TextWrapping="Wrap" Text="Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker" VerticalAlignment="Top"/>
-        <Button Content="Odp #A" HorizontalAlignment="Left" Margin="50,218,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35"/>
-        <Button Content="Odp #B" HorizontalAlignment="Left" Margin="200,218,-20,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35"/>
-        <Button Content="Odp #C" HorizontalAlignment="Left" Margin="50,274,0,-9" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35"/>
-        <Button Content="Odp #D" HorizontalAlignment="Left" Margin="200,274,-20,-9" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35"/>
+        <TextBox x:Name="QuestionTextBox" Height="161" Margin="50,40,21,0" TextWrapping="Wrap" Text="Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker" VerticalAlignment="Top"/>
+        <Button x:Name="Answer1Button" Content="Odp #A" HorizontalAlignment="Left" Margin="50,218,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35" Click="Answer1Click"/>
+        <Button x:Name="Answer2Button" Content="Odp #B" HorizontalAlignment="Left" Margin="200,218,-20,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35" Click="Answer2Click"/>
+        <Button x:Name="Answer3Button" Content="Odp #C" HorizontalAlignment="Left" Margin="50,274,0,-9" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35" Click="Answer3Click"/>
+        <Button x:Name="Answer4Button" Content="Odp #D" HorizontalAlignment="Left" Margin="200,274,-20,-9" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.07,0.159" Height="35" Click="Answer4Click"/>
         <Button Content="Przerwij Quiz" HorizontalAlignment="Left" Margin="351,251,-89,0" VerticalAlignment="Top" Width="87" Click="AbortButton_Click" Height="36"/>
 
     </Grid>
