@@ -56,14 +56,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddQuestion.xaml.cs">
-      <DependentUpon>AddQuestion.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditQuestion.xaml.cs">
-      <DependentUpon>EditQuestion.xaml</DependentUpon>
+    <Compile Include="AddQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddQuestion.Designer.cs">
+      <DependentUpon>AddQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditQuestion.Designer.cs">
+      <DependentUpon>EditQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
@@ -71,15 +77,7 @@
     <Compile Include="QuizUC.xaml.cs">
       <DependentUpon>QuizUC.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddQuestion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AdminPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,6 +116,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="AddQuestion.resx">
+      <DependentUpon>AddQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditQuestion.resx">
+      <DependentUpon>EditQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
