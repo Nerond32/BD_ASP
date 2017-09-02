@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace BD_Proj
         public MenuUC()
         {
             InitializeComponent();
+            getConnection();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -49,6 +52,34 @@ namespace BD_Proj
         {
             AdminPanel admin = new AdminPanel();
             admin.Show();
+        }
+
+        public static void getConnection()
+        {
+            
+            try
+            {
+                Console.WriteLine("Start Connection");
+                SqlConnection con = new SqlConnection("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\BD_ASP\\BD_Proj\\QUIZ.mdf; Integrated Security = True; Connect Timeout = 30");
+                con.Open();
+               
+                SqlCommand commandIns = con.CreateCommand();
+                commandIns.Connection = con;
+                commandIns.CommandText = "insert into ROLES values (2,'USER')";
+                int rowInserted = commandIns.ExecuteNonQuery();
+                Console.WriteLine("WSTAWIONO : " + rowInserted + " wiersze\n\n");
+                
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Błąd połączenia: " + e.Message);
+            }
+            finally
+            {
+
+                Console.WriteLine("Stop Connection");
+            }
         }
     }
 }
