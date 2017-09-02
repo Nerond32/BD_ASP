@@ -16,5 +16,9 @@ namespace BD_Proj
         {
             InitializeComponent();
         }
+        private void EditQuestion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
