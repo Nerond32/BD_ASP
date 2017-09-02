@@ -18,11 +18,16 @@ namespace BD_Proj
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class QuizUC : UserControl
     {
-        public UserControl1()
+        public QuizUC()
         {
             InitializeComponent();
+        }
+
+        private void AbortButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.ChangeModeDelegate();
         }
     }
 }
