@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QUIZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ANSWERS">
+          <Key>
+            <PropertyRef Name="answerId" />
+          </Key>
+          <Property Name="answerId" Type="int" Nullable="false" />
+          <Property Name="answerContent" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="correctAnswer" Type="bit" Nullable="false" />
+          <Property Name="questionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QUESTIONS">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="int" Nullable="false" />
+          <Property Name="questionContent" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCORES">
+          <Key>
+            <PropertyRef Name="scoreId" />
+          </Key>
+          <Property Name="scoreId" Type="int" Nullable="false" />
+          <Property Name="win" Type="int" Nullable="false" />
+          <Property Name="lost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="scoreId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="ANSWERS_fk0">
+          <End Role="QUESTIONS" Type="Self.QUESTIONS" Multiplicity="1" />
+          <End Role="ANSWERS" Type="Self.ANSWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTIONS">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="ANSWERS">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_fk0">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_fk1">
+          <End Role="SCORES" Type="Self.SCORES" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCORES">
+              <PropertyRef Name="scoreId" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="scoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUIZModelStoreContainer">
+          <EntitySet Name="ANSWERS" EntityType="Self.ANSWERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTIONS" EntityType="Self.QUESTIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCORES" EntityType="Self.SCORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ANSWERS_fk0" Association="Self.ANSWERS_fk0">
+            <End Role="QUESTIONS" EntitySet="QUESTIONS" />
+            <End Role="ANSWERS" EntitySet="ANSWERS" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_fk0" Association="Self.USERS_fk0">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_fk1" Association="Self.USERS_fk1">
+            <End Role="SCORES" EntitySet="SCORES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUIZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ANSWERS">
+          <Key>
+            <PropertyRef Name="answerId" />
+          </Key>
+          <Property Name="answerId" Type="Int32" Nullable="false" />
+          <Property Name="answerContent" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correctAnswer" Type="Boolean" Nullable="false" />
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QUESTIONS" Relationship="Self.ANSWERS_fk0" FromRole="ANSWERS" ToRole="QUESTIONS" />
+        </EntityType>
+        <EntityType Name="QUESTIONS">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <Property Name="questionContent" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ANSWERS" Relationship="Self.ANSWERS_fk0" FromRole="QUESTIONS" ToRole="ANSWERS" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.USERS_fk0" FromRole="ROLES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="SCORES">
+          <Key>
+            <PropertyRef Name="scoreId" />
+          </Key>
+          <Property Name="scoreId" Type="Int32" Nullable="false" />
+          <Property Name="win" Type="Int32" Nullable="false" />
+          <Property Name="lost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.USERS_fk1" FromRole="SCORES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="scoreId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ROLES" Relationship="Self.USERS_fk0" FromRole="USERS" ToRole="ROLES" />
+          <NavigationProperty Name="SCORES" Relationship="Self.USERS_fk1" FromRole="USERS" ToRole="SCORES" />
+        </EntityType>
+        <Association Name="ANSWERS_fk0">
+          <End Role="QUESTIONS" Type="Self.QUESTIONS" Multiplicity="1" />
+          <End Role="ANSWERS" Type="Self.ANSWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTIONS">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="ANSWERS">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_fk0">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USERS_fk1">
+          <End Role="SCORES" Type="Self.SCORES" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCORES">
+              <PropertyRef Name="scoreId" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="scoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUIZEntitiesData" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ANSWERS" EntityType="Self.ANSWERS" />
+          <EntitySet Name="QUESTIONS" EntityType="Self.QUESTIONS" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" />
+          <EntitySet Name="SCORES" EntityType="Self.SCORES" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <AssociationSet Name="ANSWERS_fk0" Association="Self.ANSWERS_fk0">
+            <End Role="QUESTIONS" EntitySet="QUESTIONS" />
+            <End Role="ANSWERS" EntitySet="ANSWERS" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_fk0" Association="Self.USERS_fk0">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="USERS_fk1" Association="Self.USERS_fk1">
+            <End Role="SCORES" EntitySet="SCORES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUIZModelStoreContainer" CdmEntityContainer="QUIZEntitiesData">
+          <EntitySetMapping Name="ANSWERS">
+            <EntityTypeMapping TypeName="QUIZModel.ANSWERS">
+              <MappingFragment StoreEntitySet="ANSWERS">
+                <ScalarProperty Name="answerId" ColumnName="answerId" />
+                <ScalarProperty Name="answerContent" ColumnName="answerContent" />
+                <ScalarProperty Name="correctAnswer" ColumnName="correctAnswer" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTIONS">
+            <EntityTypeMapping TypeName="QUIZModel.QUESTIONS">
+              <MappingFragment StoreEntitySet="QUESTIONS">
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="questionContent" ColumnName="questionContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES">
+            <EntityTypeMapping TypeName="QUIZModel.ROLES">
+              <MappingFragment StoreEntitySet="ROLES">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCORES">
+            <EntityTypeMapping TypeName="QUIZModel.SCORES">
+              <MappingFragment StoreEntitySet="SCORES">
+                <ScalarProperty Name="scoreId" ColumnName="scoreId" />
+                <ScalarProperty Name="win" ColumnName="win" />
+                <ScalarProperty Name="lost" ColumnName="lost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="QUIZModel.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="scoreId" ColumnName="scoreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

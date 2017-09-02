@@ -65,9 +65,9 @@ namespace BD_Proj
                
                 SqlCommand commandIns = con.CreateCommand();
                 commandIns.Connection = con;
-                commandIns.CommandText = "insert into ROLES values (2,'USER')";
-                int rowInserted = commandIns.ExecuteNonQuery();
-                Console.WriteLine("WSTAWIONO : " + rowInserted + " wiersze\n\n");
+                //commandIns.CommandText = "insert into ANSWERS values (1,'23',1,1) ,(2,'20',0,1), (3,'lama',0,1), (4,'100',0,1)";
+               // int rowInserted = commandIns.ExecuteNonQuery();
+                //Console.WriteLine("WSTAWIONO : " + rowInserted + " wiersze\n\n");
                 
                 con.Close();
             }

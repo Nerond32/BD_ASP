@@ -13,6 +13,21 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,10 +49,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +90,9 @@
     <Compile Include="AddQuestion.Designer.cs">
       <DependentUpon>AddQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="ANSWERS.cs">
+      <DependentUpon>QuizData.tt</DependentUpon>
+    </Compile>
     <Compile Include="EditQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,14 +102,46 @@
     <Compile Include="MenuUC.xaml.cs">
       <DependentUpon>MenuUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QUESTIONS.cs">
+      <DependentUpon>QuizData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuizData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuizData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuizData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="QUIZDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QUIZDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuizEndedUC.xaml.cs">
       <DependentUpon>QuizEndedUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="QuizUC.xaml.cs">
       <DependentUpon>QuizUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ROLES.cs">
+      <DependentUpon>QuizData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCORES.cs">
+      <DependentUpon>QuizData.tt</DependentUpon>
+    </Compile>
     <Compile Include="ScoresUC.xaml.cs">
       <DependentUpon>ScoresUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="USERS.cs">
+      <DependentUpon>QuizData.tt</DependentUpon>
     </Compile>
     <Page Include="AdminPanel.xaml">
       <SubType>Designer</SubType>
@@ -141,13 +200,66 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="QuizData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuizData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="QuizData.edmx.diagram">
+      <DependentUpon>QuizData.edmx</DependentUpon>
+    </None>
+    <None Include="QUIZDataSet.xsc">
+      <DependentUpon>QUIZDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QUIZDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QUIZDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QUIZDataSet.xss">
+      <DependentUpon>QUIZDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QUIZ.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QuizData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuizData.edmx</DependentUpon>
+      <LastGenOutput>QuizData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="QuizData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuizData.edmx</DependentUpon>
+      <LastGenOutput>QuizData.cs</LastGenOutput>
+    </Content>
+    <Content Include="QUIZ_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>QUIZ.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
