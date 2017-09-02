@@ -23,6 +23,8 @@ namespace BD_Proj
         public MainWindow()
         {
             InitializeComponent();
+            MenuUC menuUC = new MenuUC();
+            mainSP.Children.Add(menuUC);
         }
     }
 }

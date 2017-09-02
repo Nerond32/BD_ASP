@@ -25,7 +25,27 @@ namespace BD_Proj
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AdminPanelButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

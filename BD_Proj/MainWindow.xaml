@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="Wafel Challenge" Height="450" Width="525">
     <Grid>
-        <UserControl>
-            
-        </UserControl>
+        <StackPanel Name="mainSP"/>
     </Grid>
 </Window>
