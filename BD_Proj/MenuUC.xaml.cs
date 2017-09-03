@@ -35,7 +35,7 @@ namespace BD_Proj
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ChangeModeDelegate(1);
+            MainWindow.ChangeModeDelegate(1, 0);
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)

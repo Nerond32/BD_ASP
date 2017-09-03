@@ -18,7 +18,7 @@ namespace BD_Proj
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public delegate void ChangeModeDelegate(short mode);
+    public delegate void ChangeModeDelegate(short mode, short score);
     public partial class MainWindow : Window
     {
         private static ChangeModeDelegate changeMode = ChangeMode;
@@ -32,7 +32,7 @@ namespace BD_Proj
             mw = this;
         }
 
-        private static void ChangeMode(short mode)
+        private static void ChangeMode(short mode, short score)
         {
             mw.mainSP.Children.RemoveAt(0);
             switch(mode)
@@ -51,7 +51,7 @@ namespace BD_Proj
                 }
                 case 2:
                 {
-                    QuizEndedUC quizEndedUC = new QuizEndedUC();
+                    QuizEndedUC quizEndedUC = new QuizEndedUC(score);
                     mw.mainSP.Children.Add(quizEndedUC);
                     break;
                 }

@@ -29,26 +29,25 @@ namespace BD_Proj
         private DataRow[] answers = new DataRow[4];
         private short correctAnswer;
         private QUIZDataSet quizDS = new QUIZDataSet();
-        private SqlDataAdapter adapter;
+        SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\QUIZ.mdf;Integrated Security=True;Connect Timeout=30");
         public QuizUC()
         {
+            conn.Open();
             InitializeComponent();
             InitQuestions();
         }
 
         private void InitQuestions()
         {
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\QUIZ.mdf;Integrated Security=True;Connect Timeout=30");
-            conn.Open();
             SqlCommand cmd = new SqlCommand("SELECT TOP 5 * FROM QUESTIONS ORDER BY NEWID()", conn);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataTable questionsDT = new DataTable();
             sda.Fill(questionsDT);
-            conn.Close();
             int questionsAvailable = questionsDT.Rows.Count;
             if(questionsAvailable < questionAmount)
             {
-                // błąd bo za mało pytań w bazie
+                FinishQuiz();
+                return;
             }
             questions = questionsDT.Select();
             /*QuestionTextBox.Text = (from DataRow dr in questionsDT.Rows
@@ -58,17 +57,16 @@ namespace BD_Proj
             //DataTable questionsDT = quizDS.Tables["Questions"];
             //var foundRows = questionsDT.Select();
             //var query = 
-            // questions = pobranie z bazy 10 losowych
             NextQuestion();
         }
 
         private void UpdateText()
         {
             QuestionTextBox.Text = (String)questions[currentQuestion].ItemArray[1];
-            Answer1Button.Content = answers[0];
-            Answer2Button.Content = answers[1];
-            Answer3Button.Content = answers[2];
-            Answer4Button.Content = answers[3];
+            Answer1Button.Content = (String)answers[0].ItemArray[1];
+            Answer2Button.Content = (String)answers[1].ItemArray[1];
+            Answer3Button.Content = (String)answers[2].ItemArray[1];
+            Answer4Button.Content = (String)answers[3].ItemArray[1];
         }
 
         private void NextQuestion()
@@ -78,20 +76,34 @@ namespace BD_Proj
                 FinishQuiz();
                 return;
             }
-            // answers = pobranie z bazy 4 odpowiedzi w LOSOWEJ kolejoności
-            // correctAnswer = pozycja dobrej odpowiedzi
+            int questionId = (int)questions[currentQuestion].ItemArray[0];
+            SqlCommand cmd = new SqlCommand("SELECT TOP 4 * FROM ANSWERS WHERE questionId = " + questionId + " ORDER BY NEWID()", conn);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable answersDT = new DataTable();
+            sda.Fill(answersDT);
+            answers = answersDT.Select();
+            for(int i = 0; i < 4; i++)
+            {
+                if((bool)answers[i].ItemArray[2])
+                {
+                    correctAnswer = (short)(i + 1);
+                }
+            }
+            Console.WriteLine(correctAnswer);
             UpdateText();
             currentQuestion++;
         }
 
         private void FinishQuiz()
         {
-            MainWindow.ChangeModeDelegate(2);
+            conn.Close();
+            MainWindow.ChangeModeDelegate(2, score);
         }
 
         private void AbortButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ChangeModeDelegate(0);
+            conn.Close();
+            MainWindow.ChangeModeDelegate(0, 0);
         }
 
         private void Answer(short answerNr)
