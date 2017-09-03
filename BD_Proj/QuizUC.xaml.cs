@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,26 +22,49 @@ namespace BD_Proj
     /// </summary>
     public partial class QuizUC : UserControl
     {
-        private const short questionAmount = 10;
+        private const short questionAmount = 5;
         private short currentQuestion = 0;
         private short score = 0;
-        private String[] questions = new String[questionAmount];
-        private String[] answers = new String[4];
+        private DataRow[] questions = new DataRow[questionAmount];
+        private DataRow[] answers = new DataRow[4];
         private short correctAnswer;
+        private QUIZDataSet quizDS = new QUIZDataSet();
+        private SqlDataAdapter adapter;
         public QuizUC()
         {
             InitializeComponent();
+            InitQuestions();
         }
 
         private void InitQuestions()
         {
+            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\QUIZ.mdf;Integrated Security=True;Connect Timeout=30");
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT TOP 5 * FROM QUESTIONS ORDER BY NEWID()", conn);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable questionsDT = new DataTable();
+            sda.Fill(questionsDT);
+            conn.Close();
+            int questionsAvailable = questionsDT.Rows.Count;
+            if(questionsAvailable < questionAmount)
+            {
+                // błąd bo za mało pytań w bazie
+            }
+            questions = questionsDT.Select();
+            /*QuestionTextBox.Text = (from DataRow dr in questionsDT.Rows
+                                    where (int)dr["questionId"] == 1
+                                    select (string)dr["questionContent"]).FirstOrDefault();*/
+            //QuestionTextBox.Text = "Gówno";
+            //DataTable questionsDT = quizDS.Tables["Questions"];
+            //var foundRows = questionsDT.Select();
+            //var query = 
             // questions = pobranie z bazy 10 losowych
             NextQuestion();
         }
 
         private void UpdateText()
         {
-            QuestionTextBox.Text = questions[currentQuestion];
+            QuestionTextBox.Text = (String)questions[currentQuestion].ItemArray[1];
             Answer1Button.Content = answers[0];
             Answer2Button.Content = answers[1];
             Answer3Button.Content = answers[2];
@@ -48,7 +73,7 @@ namespace BD_Proj
 
         private void NextQuestion()
         {
-            if(currentQuestion > questionAmount)
+            if(currentQuestion >= questionAmount)
             {
                 FinishQuiz();
                 return;
