@@ -13,6 +13,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -72,9 +72,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -84,11 +86,11 @@
     <Compile Include="AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddQuestion.cs">
+    <Compile Include="UsersManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddQuestion.Designer.cs">
-      <DependentUpon>AddQuestion.cs</DependentUpon>
+    <Compile Include="UsersManagement.Designer.cs">
+      <DependentUpon>UsersManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="ANSWERS.cs">
       <DependentUpon>QuizData.tt</DependentUpon>
@@ -190,8 +192,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="AddQuestion.resx">
-      <DependentUpon>AddQuestion.cs</DependentUpon>
+    <EmbeddedResource Include="UsersManagement.resx">
+      <DependentUpon>UsersManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditQuestion.resx">
       <DependentUpon>EditQuestion.cs</DependentUpon>
@@ -225,15 +227,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="QUIZ.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="QUIZ.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="QuizData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QuizData.edmx</DependentUpon>
@@ -245,7 +249,7 @@
       <LastGenOutput>QuizData.cs</LastGenOutput>
     </Content>
     <Content Include="QUIZ_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>QUIZ.mdf</DependentUpon>
     </Content>
   </ItemGroup>

@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="AdminPanel" Height="240.667" Width="271.333">
     <Grid>
-        <Button x:Name="addQuestionButton" Content="Dodaj pytanie" HorizontalAlignment="Left" Margin="91,66,0,0" VerticalAlignment="Top" Width="95" Click="addQuestion"/>
-        <Button x:Name="edtiQuestionButton" Content="Edytuj pytanie" HorizontalAlignment="Left" Margin="91,106,0,0" VerticalAlignment="Top" Width="95" Click="edtiQuestion"/>
+        <Button x:Name="addQuestionButton" Content="Użytkownicy" HorizontalAlignment="Left" Margin="91,66,0,0" VerticalAlignment="Top" Width="95" Click="addQuestion"/>
+        <Button x:Name="edtiQuestionButton" Content="Pytania i odpowiedzi" HorizontalAlignment="Left" Margin="74,108,0,0" VerticalAlignment="Top" Width="128" Click="edtiQuestion"/>
         <Button x:Name="exitButton" Content="Wyjdź" HorizontalAlignment="Left" Margin="101,150,0,0" VerticalAlignment="Top" Width="75" Click="CloseWindow"/>
         <Label Content="Niebezpieczeństwo!" HorizontalAlignment="Left" Margin="43,18,0,0" VerticalAlignment="Top" Width="192" FontSize="20"/>
 

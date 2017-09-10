@@ -31,7 +31,7 @@ namespace BD_Proj
 
         private void addQuestion(object sender, RoutedEventArgs e)
         {
-            AddQuestion addQuestionForm = new AddQuestion();
+            UsersManagement addQuestionForm = new UsersManagement();
             addQuestionForm.Show();
         }
 
