@@ -27,6 +27,7 @@ namespace BD_Proj
         private QUIZDataSet quizDS = new QUIZDataSet();
         private DataRow[] answers = new DataRow[1];
         public static int loggedUserID = -1;
+        public static int loggedUserScoreID = -1;
         SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\QUIZ.mdf;Integrated Security=True;Connect Timeout=30");
         public MenuUC()
         {
@@ -69,6 +70,7 @@ namespace BD_Proj
                 try
                 {
                     loggedUserID = (int)answers[0].ItemArray[0];
+                    loggedUserScoreID = (int)answers[0].ItemArray[4];
                     System.Windows.MessageBox.Show("Zalogowano pomyślnie");
                     LoginButton.Content = "Wyloguj";
                 }
@@ -80,6 +82,7 @@ namespace BD_Proj
             else
             {
                 loggedUserID = -1;
+                loggedUserScoreID = -1;
                 LoginButton.Content = "Zaloguj";
             }
         }
