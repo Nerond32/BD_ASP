@@ -86,6 +86,7 @@
             this.Controls.Add(this.chart2);
             this.Name = "Statistics";
             this.Text = "Statistics";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.closeConnection);
             this.Load += new System.EventHandler(this.Statistics_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCORESBindingSource)).EndInit();
