@@ -298,6 +298,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextBox.TabIndex = 6;
+            this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // roleIdTextBox
             // 

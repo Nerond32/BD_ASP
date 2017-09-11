@@ -71,7 +71,7 @@
             // questionContentLabel
             // 
             questionContentLabel.AutoSize = true;
-            questionContentLabel.Location = new System.Drawing.Point(71, 80);
+            questionContentLabel.Location = new System.Drawing.Point(30, 83);
             questionContentLabel.Name = "questionContentLabel";
             questionContentLabel.Size = new System.Drawing.Size(90, 13);
             questionContentLabel.TabIndex = 3;
@@ -80,7 +80,7 @@
             // questionIdLabel
             // 
             questionIdLabel.AutoSize = true;
-            questionIdLabel.Location = new System.Drawing.Point(71, 54);
+            questionIdLabel.Location = new System.Drawing.Point(30, 57);
             questionIdLabel.Name = "questionIdLabel";
             questionIdLabel.Size = new System.Drawing.Size(62, 13);
             questionIdLabel.TabIndex = 1;
@@ -112,7 +112,7 @@
             this.qUESTIONSBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.qUESTIONSBindingNavigator.Name = "qUESTIONSBindingNavigator";
             this.qUESTIONSBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.qUESTIONSBindingNavigator.Size = new System.Drawing.Size(835, 25);
+            this.qUESTIONSBindingNavigator.Size = new System.Drawing.Size(708, 25);
             this.qUESTIONSBindingNavigator.TabIndex = 0;
             this.qUESTIONSBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -223,7 +223,7 @@
             // questionContentTextBox
             // 
             this.questionContentTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.qUESTIONSBindingSource, "questionContent", true));
-            this.questionContentTextBox.Location = new System.Drawing.Point(167, 77);
+            this.questionContentTextBox.Location = new System.Drawing.Point(126, 80);
             this.questionContentTextBox.Name = "questionContentTextBox";
             this.questionContentTextBox.Size = new System.Drawing.Size(383, 20);
             this.questionContentTextBox.TabIndex = 4;
@@ -231,7 +231,7 @@
             // questionIdTextBox
             // 
             this.questionIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.qUESTIONSBindingSource, "questionId", true));
-            this.questionIdTextBox.Location = new System.Drawing.Point(167, 51);
+            this.questionIdTextBox.Location = new System.Drawing.Point(126, 54);
             this.questionIdTextBox.Name = "questionIdTextBox";
             this.questionIdTextBox.Size = new System.Drawing.Size(383, 20);
             this.questionIdTextBox.TabIndex = 2;
@@ -247,9 +247,9 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewCheckBoxColumn1});
             this.aNSWERSDataGridView.DataSource = this.aNSWERSBindingSource;
-            this.aNSWERSDataGridView.Location = new System.Drawing.Point(74, 127);
+            this.aNSWERSDataGridView.Location = new System.Drawing.Point(33, 125);
             this.aNSWERSDataGridView.Name = "aNSWERSDataGridView";
-            this.aNSWERSDataGridView.Size = new System.Drawing.Size(681, 224);
+            this.aNSWERSDataGridView.Size = new System.Drawing.Size(644, 224);
             this.aNSWERSDataGridView.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn3
@@ -303,7 +303,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 361);
+            this.ClientSize = new System.Drawing.Size(708, 361);
             this.Controls.Add(this.aNSWERSDataGridView);
             this.Controls.Add(questionIdLabel);
             this.Controls.Add(this.questionIdTextBox);

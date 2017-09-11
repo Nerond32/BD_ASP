@@ -81,5 +81,11 @@ namespace BD_Proj
                 Console.WriteLine("Stop Connection");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Statistics form = new Statistics();
+            form.Show();
+        }
     }
 }
