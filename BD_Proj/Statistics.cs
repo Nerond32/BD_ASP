@@ -26,7 +26,7 @@ namespace BD_Proj
         {
             string[] seriesArray = { "Wygrane", "Przegrane" };
             int[] pointsArray = { 1, 2 };
-            String query = "SELECT * FROM SCORES WHERE scoreId = (SELECT scoreId FROM USERS WHERE userId ="+ 1 +")"; 
+            String query = "SELECT * FROM SCORES WHERE scoreId = (SELECT scoreId FROM USERS WHERE userId ="+ MenuUC.loggedUserID +")"; 
             SqlCommand command = new SqlCommand(query, conn);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
