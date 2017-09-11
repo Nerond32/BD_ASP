@@ -142,5 +142,64 @@ namespace BD_Proj
                 Console.WriteLine("Stop Connection");
             }
         }
-    }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Statistics form = new Statistics();
+            form.Show();
+        }
+    private static DialogResult ShowInputDialog(ref string username, ref string password)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 150);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = "Login";
+            System.Windows.Forms.Label usernameLabel = new System.Windows.Forms.Label();
+            usernameLabel.Text = "Username:";
+            usernameLabel.Location = new System.Drawing.Point(5, 5);
+            System.Windows.Forms.Label passwordLabel = new System.Windows.Forms.Label();
+            passwordLabel.Text = "Password:";
+            passwordLabel.Location = new System.Drawing.Point(5, 65);
+            System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 35);
+            textBox.Text = username;
+            
+            System.Windows.Forms.TextBox textBox2 = new System.Windows.Forms.TextBox();
+            textBox2.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox2.Location = new System.Drawing.Point(5, 95);
+            textBox2.Text = password;
+            textBox2.UseSystemPasswordChar = true;
+
+            inputBox.Controls.Add(usernameLabel);
+            inputBox.Controls.Add(passwordLabel);
+            inputBox.Controls.Add(textBox);
+            inputBox.Controls.Add(textBox2);
+            
+            System.Windows.Forms.Button okButton = new System.Windows.Forms.Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(5, 120);
+            inputBox.Controls.Add(okButton);
+
+            System.Windows.Forms.Button cancelButton = new System.Windows.Forms.Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+           cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(85, 120);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            username = textBox.Text;
+            password = textBox2.Text;
+            return result;
+        }
+}
 }
