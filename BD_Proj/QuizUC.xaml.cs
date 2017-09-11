@@ -50,13 +50,6 @@ namespace BD_Proj
                 return;
             }
             questions = questionsDT.Select();
-            /*QuestionTextBox.Text = (from DataRow dr in questionsDT.Rows
-                                    where (int)dr["questionId"] == 1
-                                    select (string)dr["questionContent"]).FirstOrDefault();*/
-            //QuestionTextBox.Text = "Gówno";
-            //DataTable questionsDT = quizDS.Tables["Questions"];
-            //var foundRows = questionsDT.Select();
-            //var query = 
             NextQuestion();
         }
 
