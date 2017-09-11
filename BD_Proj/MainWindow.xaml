@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD_Proj"
         mc:Ignorable="d"
-        Title="Wafel Challenge" Height="450" Width="525">
-    <Grid>
+        Title="The Quiz Challenge" Height="450" Width="525">
+    <Grid Background="#FFFFFFFF">
         <StackPanel Name="mainSP"/>
     </Grid>
 </Window>
