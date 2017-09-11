@@ -86,7 +86,8 @@ namespace BD_Proj
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Registry registry = new Registry();
+            registry.Show();
         }
 
         private void AdminPanelButton_Click(object sender, RoutedEventArgs e)

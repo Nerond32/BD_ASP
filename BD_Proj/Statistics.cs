@@ -53,5 +53,10 @@ namespace BD_Proj
             }
 
         }
+
+        private void closeConnection(object sender, FormClosedEventArgs e)
+        {
+            conn.Close();
+        }
     }
 }

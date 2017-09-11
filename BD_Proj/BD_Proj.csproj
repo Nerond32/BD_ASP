@@ -90,6 +90,12 @@
     <Compile Include="PanelAdmin.Designer.cs">
       <DependentUpon>PanelAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registry.Designer.cs">
+      <DependentUpon>Registry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,9 +155,6 @@
     <Compile Include="SCORES.cs">
       <DependentUpon>QuizData.tt</DependentUpon>
     </Compile>
-    <Compile Include="ScoresUC.xaml.cs">
-      <DependentUpon>ScoresUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="USERS.cs">
       <DependentUpon>QuizData.tt</DependentUpon>
     </Compile>
@@ -179,10 +182,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScoresUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -200,6 +199,9 @@
     </Compile>
     <EmbeddedResource Include="PanelAdmin.resx">
       <DependentUpon>PanelAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registry.resx">
+      <DependentUpon>Registry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>

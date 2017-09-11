@@ -70,6 +70,5 @@ namespace BD_Proj
             this.Validate();      
             this.aNSWERSTableAdapter.Update(this.qUIZDataSet.ANSWERS);
         }
-
     }
 }
