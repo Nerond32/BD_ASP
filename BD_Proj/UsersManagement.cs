@@ -23,6 +23,8 @@ namespace BD_Proj
 
         private void AddQuestion_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'qUIZDataSet.SCORES' table. You can move, or remove it, as needed.
+            
             // TODO: This line of code loads data into the 'qUIZDataSet.USERS' table. You can move, or remove it, as needed.
             this.uSERSTableAdapter.Fill(this.qUIZDataSet.USERS);
 
@@ -33,14 +35,25 @@ namespace BD_Proj
                 try
                 {
                     this.uSERSBindingSource.EndEdit();
+                    this.sCORESBindingSource.EndEdit();
                     this.Validate();
+                    this.sCORESTableAdapter.Update(this.qUIZDataSet.SCORES);
                     this.uSERSTableAdapter.Update(this.qUIZDataSet.USERS);
                     MessageBox.Show("Successful");
                 }
-                catch (System.Exception)
+                catch (System.Exception blad)
                 {
-                    MessageBox.Show("Failed");
+                    MessageBox.Show("Failed" + blad);
                 }
+        }
+
+        private void loadStats(object sender, EventArgs e)
+        {
+            if (scoreIdTextBox.Text == "")
+            {
+                scoreIdTextBox.Text = "100";
+            }
+            this.sCORESTableAdapter.FillById(this.qUIZDataSet.SCORES, ((int)(System.Convert.ChangeType(scoreIdTextBox.Text, typeof(int)))));
         }
     }
 }

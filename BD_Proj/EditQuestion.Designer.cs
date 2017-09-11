@@ -150,7 +150,6 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -183,7 +182,6 @@
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.TextChanged += new System.EventHandler(this.answerUpdateTable);
             // 
             // bindingNavigatorSeparator1
             // 
@@ -237,6 +235,7 @@
             this.questionIdTextBox.Name = "questionIdTextBox";
             this.questionIdTextBox.Size = new System.Drawing.Size(383, 20);
             this.questionIdTextBox.TabIndex = 2;
+            this.questionIdTextBox.TextChanged += new System.EventHandler(this.answerUpdateTable);
             // 
             // aNSWERSDataGridView
             // 

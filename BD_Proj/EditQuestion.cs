@@ -29,15 +29,16 @@ namespace BD_Proj
             try
             {
                 this.qUESTIONSBindingSource.EndEdit();
+                this.aNSWERSBindingSource.EndEdit();                
                 this.Validate();
-               
-                this.qUESTIONSTableAdapter.Update(this.qUIZDataSet.QUESTIONS);
                 this.aNSWERSTableAdapter.Update(this.qUIZDataSet.ANSWERS);
-                MessageBox.Show("Update successful");
+                this.qUESTIONSTableAdapter.Update(this.qUIZDataSet.QUESTIONS);
+           
+                MessageBox.Show("Successful");
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                MessageBox.Show("Update failed");
+                MessageBox.Show("Failed" + ex);
             }
 
         }
@@ -57,7 +58,11 @@ namespace BD_Proj
 
         private void answerUpdateTable(object sender, EventArgs e)
         {
-            this.aNSWERSTableAdapter.FillBy1(this.qUIZDataSet.ANSWERS, ((int)(System.Convert.ChangeType(bindingNavigatorPositionItem.Text, typeof(int)))));
+            if (questionIdTextBox.Text == "")
+            {
+                questionIdTextBox.Text = "100";
+            }
+            this.aNSWERSTableAdapter.FillBy1(this.qUIZDataSet.ANSWERS, ((int)(System.Convert.ChangeType(questionIdTextBox.Text, typeof(int)))));
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
@@ -65,5 +70,6 @@ namespace BD_Proj
             this.Validate();      
             this.aNSWERSTableAdapter.Update(this.qUIZDataSet.ANSWERS);
         }
+
     }
 }

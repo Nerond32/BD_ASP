@@ -58,6 +58,13 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.roleIdTextBox = new System.Windows.Forms.TextBox();
             this.scoreIdTextBox = new System.Windows.Forms.TextBox();
+            this.sCORESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sCORESTableAdapter = new BD_Proj.QUIZDataSetTableAdapters.SCORESTableAdapter();
+            this.sCORESDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             userIdLabel = new System.Windows.Forms.Label();
             loginLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -67,12 +74,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.uSERSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uSERSBindingNavigator)).BeginInit();
             this.uSERSBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sCORESBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCORESDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // userIdLabel
             // 
             userIdLabel.AutoSize = true;
-            userIdLabel.Location = new System.Drawing.Point(90, 66);
+            userIdLabel.Location = new System.Drawing.Point(101, 45);
             userIdLabel.Name = "userIdLabel";
             userIdLabel.Size = new System.Drawing.Size(42, 13);
             userIdLabel.TabIndex = 1;
@@ -81,7 +90,7 @@
             // loginLabel
             // 
             loginLabel.AutoSize = true;
-            loginLabel.Location = new System.Drawing.Point(90, 92);
+            loginLabel.Location = new System.Drawing.Point(101, 71);
             loginLabel.Name = "loginLabel";
             loginLabel.Size = new System.Drawing.Size(32, 13);
             loginLabel.TabIndex = 3;
@@ -90,7 +99,7 @@
             // passwordLabel
             // 
             passwordLabel.AutoSize = true;
-            passwordLabel.Location = new System.Drawing.Point(90, 118);
+            passwordLabel.Location = new System.Drawing.Point(101, 97);
             passwordLabel.Name = "passwordLabel";
             passwordLabel.Size = new System.Drawing.Size(55, 13);
             passwordLabel.TabIndex = 5;
@@ -99,7 +108,7 @@
             // roleIdLabel
             // 
             roleIdLabel.AutoSize = true;
-            roleIdLabel.Location = new System.Drawing.Point(90, 144);
+            roleIdLabel.Location = new System.Drawing.Point(101, 123);
             roleIdLabel.Name = "roleIdLabel";
             roleIdLabel.Size = new System.Drawing.Size(39, 13);
             roleIdLabel.TabIndex = 7;
@@ -108,7 +117,7 @@
             // scoreIdLabel
             // 
             scoreIdLabel.AutoSize = true;
-            scoreIdLabel.Location = new System.Drawing.Point(90, 170);
+            scoreIdLabel.Location = new System.Drawing.Point(101, 149);
             scoreIdLabel.Name = "scoreIdLabel";
             scoreIdLabel.Size = new System.Drawing.Size(48, 13);
             scoreIdLabel.TabIndex = 9;
@@ -168,7 +177,7 @@
             this.uSERSBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.uSERSBindingNavigator.Name = "uSERSBindingNavigator";
             this.uSERSBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.uSERSBindingNavigator.Size = new System.Drawing.Size(348, 25);
+            this.uSERSBindingNavigator.Size = new System.Drawing.Size(344, 25);
             this.uSERSBindingNavigator.TabIndex = 0;
             this.uSERSBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -269,7 +278,7 @@
             // userIdTextBox
             // 
             this.userIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.uSERSBindingSource, "userId", true));
-            this.userIdTextBox.Location = new System.Drawing.Point(151, 63);
+            this.userIdTextBox.Location = new System.Drawing.Point(162, 42);
             this.userIdTextBox.Name = "userIdTextBox";
             this.userIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.userIdTextBox.TabIndex = 2;
@@ -277,7 +286,7 @@
             // loginTextBox
             // 
             this.loginTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.uSERSBindingSource, "login", true));
-            this.loginTextBox.Location = new System.Drawing.Point(151, 89);
+            this.loginTextBox.Location = new System.Drawing.Point(162, 68);
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(100, 20);
             this.loginTextBox.TabIndex = 4;
@@ -285,7 +294,7 @@
             // passwordTextBox
             // 
             this.passwordTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.uSERSBindingSource, "password", true));
-            this.passwordTextBox.Location = new System.Drawing.Point(151, 115);
+            this.passwordTextBox.Location = new System.Drawing.Point(162, 94);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextBox.TabIndex = 6;
@@ -293,7 +302,7 @@
             // roleIdTextBox
             // 
             this.roleIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.uSERSBindingSource, "roleId", true));
-            this.roleIdTextBox.Location = new System.Drawing.Point(151, 141);
+            this.roleIdTextBox.Location = new System.Drawing.Point(162, 120);
             this.roleIdTextBox.Name = "roleIdTextBox";
             this.roleIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.roleIdTextBox.TabIndex = 8;
@@ -301,16 +310,70 @@
             // scoreIdTextBox
             // 
             this.scoreIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.uSERSBindingSource, "scoreId", true));
-            this.scoreIdTextBox.Location = new System.Drawing.Point(151, 167);
+            this.scoreIdTextBox.Location = new System.Drawing.Point(162, 146);
             this.scoreIdTextBox.Name = "scoreIdTextBox";
             this.scoreIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.scoreIdTextBox.TabIndex = 10;
+            this.scoreIdTextBox.TextChanged += new System.EventHandler(this.loadStats);
+            // 
+            // sCORESBindingSource
+            // 
+            this.sCORESBindingSource.DataMember = "SCORES";
+            this.sCORESBindingSource.DataSource = this.qUIZDataSet;
+            // 
+            // sCORESTableAdapter
+            // 
+            this.sCORESTableAdapter.ClearBeforeFill = true;
+            // 
+            // sCORESDataGridView
+            // 
+            this.sCORESDataGridView.AutoGenerateColumns = false;
+            this.sCORESDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sCORESDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.sCORESDataGridView.DataSource = this.sCORESBindingSource;
+            this.sCORESDataGridView.Location = new System.Drawing.Point(0, 227);
+            this.sCORESDataGridView.Name = "sCORESDataGridView";
+            this.sCORESDataGridView.Size = new System.Drawing.Size(346, 78);
+            this.sCORESDataGridView.TabIndex = 18;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "scoreId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "scoreId";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "win";
+            this.dataGridViewTextBoxColumn2.HeaderText = "win";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "lost";
+            this.dataGridViewTextBoxColumn3.HeaderText = "lost";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label1.Location = new System.Drawing.Point(127, 183);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 20);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Statystyki";
             // 
             // UsersManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 226);
+            this.ClientSize = new System.Drawing.Size(344, 305);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.sCORESDataGridView);
             this.Controls.Add(userIdLabel);
             this.Controls.Add(this.userIdTextBox);
             this.Controls.Add(loginLabel);
@@ -330,6 +393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.uSERSBindingNavigator)).EndInit();
             this.uSERSBindingNavigator.ResumeLayout(false);
             this.uSERSBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sCORESBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCORESDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,5 +424,12 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox roleIdTextBox;
         private System.Windows.Forms.TextBox scoreIdTextBox;
+        private System.Windows.Forms.BindingSource sCORESBindingSource;
+        private QUIZDataSetTableAdapters.SCORESTableAdapter sCORESTableAdapter;
+        private System.Windows.Forms.DataGridView sCORESDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Label label1;
     }
 }

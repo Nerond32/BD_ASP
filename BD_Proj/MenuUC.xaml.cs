@@ -50,7 +50,7 @@ namespace BD_Proj
 
         private void AdminPanelButton_Click(object sender, RoutedEventArgs e)
         {
-            AdminPanel admin = new AdminPanel();
+            PanelAdmin admin = new PanelAdmin();
             admin.Show();
         }
 
