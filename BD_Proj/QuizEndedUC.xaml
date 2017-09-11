@@ -9,7 +9,6 @@
     <Grid>
         <Button x:Name="ReturnButton" Content="Powrót do menu" HorizontalAlignment="Left" Margin="85,201,0,0" VerticalAlignment="Top" Width="119" IsCancel="True" Height="36" Click="ReturnButton_Click"/>
         <Button x:Name="PlayAgainButton" Content="Zagraj ponownie" HorizontalAlignment="Left" Margin="85,93,0,0" VerticalAlignment="Top" Width="119" IsCancel="True" Height="36" Click="PlayAgainButton_Click"/>
-        <Button x:Name="Highscores_Button" Content="Zobacz wyniki" HorizontalAlignment="Left" Margin="85,146,0,0" VerticalAlignment="Top" Width="119" IsCancel="True" Height="36" Click="HighscoresButton_Click"/>
         <Label x:Name="ScoreLabel" Content="Twój wynik to x na y" HorizontalAlignment="Left" Margin="85,45,0,0" VerticalAlignment="Top" Width="119"/>
 
     </Grid>

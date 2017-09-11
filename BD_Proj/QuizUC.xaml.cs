@@ -89,6 +89,10 @@ namespace BD_Proj
 
         private void FinishQuiz()
         {
+            SqlCommand cmd = new SqlCommand("UPDATE SCORES  SET win = win + "+ score +"WHERE scoreId = " + MenuUC.loggedUserID, conn);
+            cmd.ExecuteNonQuery();
+            cmd = new SqlCommand("UPDATE SCORES  SET lost = lost + " + (5-score) + "WHERE scoreId = " + MenuUC.loggedUserID, conn);
+            cmd.ExecuteNonQuery();
             conn.Close();
             MainWindow.ChangeModeDelegate(2, score);
         }
