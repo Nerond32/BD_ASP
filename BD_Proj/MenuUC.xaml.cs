@@ -47,24 +47,33 @@ namespace BD_Proj
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string username = "username";
-            string password = "password";
-            ShowInputDialog(ref username, ref password);
-            SqlCommand cmd = new SqlCommand(@"SELECT * FROM USERS WHERE login = @username AND password = @password" , conn);
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable answersDT = new DataTable();
-            sda.Fill(answersDT);
-            answers = answersDT.Select();
-            try
+            if (loggedUserID == -1)
             {
-                loggedUserID = (int)answers[0].ItemArray[0];
-                System.Windows.MessageBox.Show("Logged in succesfully");
+                string username = "username";
+                string password = "password";
+                ShowInputDialog(ref username, ref password);
+                SqlCommand cmd = new SqlCommand(@"SELECT * FROM USERS WHERE login = @username AND password = @password", conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable answersDT = new DataTable();
+                sda.Fill(answersDT);
+                answers = answersDT.Select();
+                try
+                {
+                    loggedUserID = (int)answers[0].ItemArray[0];
+                    System.Windows.MessageBox.Show("Logged in succesfully");
+                    LoginButton.Content = "Wyloguj";
+                }
+                catch (Exception exception)
+                {
+                    System.Windows.MessageBox.Show("Login failed");
+                }
             }
-            catch(Exception exception)
+            else
             {
-                System.Windows.MessageBox.Show("Login failed");
+                loggedUserID = -1;
+                LoginButton.Content = "Zaloguj";
             }
         }
 
