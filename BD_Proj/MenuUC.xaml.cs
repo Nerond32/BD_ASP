@@ -138,14 +138,21 @@ namespace BD_Proj
             }
             finally
             {
-
                 Console.WriteLine("Stop Connection");
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Statistics form = new Statistics();
-            form.Show();
+            if (loggedUserID != -1)
+            {
+                Statistics form = new Statistics();
+                form.Show();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Musisz być zalogowany żeby obejrzeć swoje statystyki!");
+            }
+            
         }
     private static DialogResult ShowInputDialog(ref string username, ref string password)
         {
