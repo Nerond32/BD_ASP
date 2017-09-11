@@ -42,7 +42,14 @@ namespace BD_Proj
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ChangeModeDelegate(1, 0);
+            if (loggedUserID != -1)
+            {
+                MainWindow.ChangeModeDelegate(1, 0);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Tylko zalogowani użytkownicy mogą grać!");
+            }
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -62,12 +69,12 @@ namespace BD_Proj
                 try
                 {
                     loggedUserID = (int)answers[0].ItemArray[0];
-                    System.Windows.MessageBox.Show("Logged in succesfully");
+                    System.Windows.MessageBox.Show("Zalogowano pomyślnie");
                     LoginButton.Content = "Wyloguj";
                 }
                 catch (Exception exception)
                 {
-                    System.Windows.MessageBox.Show("Login failed");
+                    System.Windows.MessageBox.Show("Niepoprawne dane logowania!");
                 }
             }
             else
@@ -99,12 +106,12 @@ namespace BD_Proj
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("Permission denied!");
+                    System.Windows.MessageBox.Show("Brak dostępu!");
                 }
             }
             catch(Exception exc)
             {
-                System.Windows.MessageBox.Show("Permission denied!");
+                System.Windows.MessageBox.Show("Brak dostępu!");
             }
         }
 
