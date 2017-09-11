@@ -149,9 +149,6 @@
     <Compile Include="SCORES.cs">
       <DependentUpon>QuizData.tt</DependentUpon>
     </Compile>
-    <Compile Include="ScoresUC.xaml.cs">
-      <DependentUpon>ScoresUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="USERS.cs">
       <DependentUpon>QuizData.tt</DependentUpon>
     </Compile>
@@ -176,10 +173,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuizUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ScoresUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
