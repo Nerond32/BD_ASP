@@ -60,6 +60,7 @@ namespace BD_Proj
                 string username = "username";
                 string password = "password";
                 ShowInputDialog(ref username, ref password);
+                password = Registry.sha256_hash(password);
                 SqlCommand cmd = new SqlCommand(@"SELECT * FROM USERS WHERE login = @username AND password = @password", conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);

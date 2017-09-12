@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,22 @@ namespace BD_Proj
             InitializeComponent();
             conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\QUIZ.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
+        }
+
+        public static String sha256_hash(string value)
+        {
+            StringBuilder Sb = new StringBuilder();
+
+            using (var hash = SHA256.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                Byte[] result = hash.ComputeHash(enc.GetBytes(value));
+
+                foreach (Byte b in result)
+                    Sb.Append(b.ToString("x2"));
+            }
+
+            return Sb.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,7 +66,8 @@ namespace BD_Proj
 
                 scoreId = (int.Parse(scoreId) + 1).ToString();
                 userId = (int.Parse(userId) + 1).ToString();
-                String queryScores = "INSERT INTO SCORES VALUES (" + scoreId + ",0,0);" + "INSERT INTO USERS VALUES (" + userId + "," + "'" + loginTextBox.Text.ToString() + "'" + "," + "'" + passwordTextBox.Text.ToString() + "'" + "," + 2 + "," + scoreId + ")";
+                String encryptedPassword = sha256_hash(passwordTextBox.Text.ToString());
+                String queryScores = "INSERT INTO SCORES VALUES (" + scoreId + ",0,0);" + "INSERT INTO USERS VALUES (" + userId + "," + "'" + loginTextBox.Text.ToString() + "'" + "," + "'" + encryptedPassword + "'" + "," + 2 + "," + scoreId + ")";
                 SqlCommand command1 = new SqlCommand(queryScores, conn);
                 command1.ExecuteNonQuery();
 
