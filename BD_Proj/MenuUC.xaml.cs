@@ -104,7 +104,7 @@ namespace BD_Proj
             currentUser = currentUserDT.Select();
             try
             {
-                if ((int)currentUser[0].ItemArray[4] == 1)
+                if ((int)currentUser[0].ItemArray[3] == 1)
                 {
                     PanelAdmin admin = new PanelAdmin();
                     admin.Show();
